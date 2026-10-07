@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=ooumask-bin
+_pkgname=ooumask
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Reads and sets the process file mode creation mask for spawned tasks."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/ooumask"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('ooumask')
+conflicts=('ooumask')
+source_x86_64=("${url}/releases/download/v${pkgver}/ooumask-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/ooumask-linux-x86_64" "${pkgdir}/usr/bin/ooumask"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/ooumask-uninstall"
+}
